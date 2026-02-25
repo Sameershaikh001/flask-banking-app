@@ -35,5 +35,5 @@ A secure Flask-based digital banking application with JWT authentication, role-b
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/Sameershaikh001/flask-banking-app
+   cd flask-banking-app

@@ -10,18 +10,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    services:
-      # If using PostgreSQL, add service here
-      # postgres:
-      #   image: postgres:latest
-      #   env:
-      #     POSTGRES_PASSWORD: postgres
-      #   options: >-
-      #     --health-cmd pg_isready
-      #     --health-interval 10s
-      #     --health-timeout 5s
-      #     --health-retries 5
-
     steps:
     - uses: actions/checkout@v3
 
@@ -35,12 +23,12 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
 
-    - name: Start Flask app
+    - name: Start Flask app in background
       run: |
         python run.py &
-        sleep 5  # Give time for app to start
+        sleep 5  # Give the app time to start
 
-    - name: Run pytest tests
+    - name: Run tests
       run: |
         pytest tests/ -v --html=report.html --self-contained-html
 
