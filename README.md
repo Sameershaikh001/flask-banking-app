@@ -2,7 +2,7 @@
 
 A secure Flask-based digital banking application with JWT authentication, role-based access control, and a comprehensive test suite including API, UI, and database tests.
 
-![Tests](https://github.com/your-username/your-repo-name/actions/workflows/test.yml/badge.svg)
+![Tests](https://github.com/Sameershaikh001/flask-banking-app/actions/workflows/test.yml/badge.svg)
 
 ## Features
 
