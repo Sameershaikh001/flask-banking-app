@@ -23,10 +23,26 @@ jobs:
         pip install -r requirements.txt
         pip install -r requirements-dev.txt
 
+    - name: Install Chrome (for Selenium)
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
+
+    - name: Set up Flask environment
+      run: |
+        echo "FLASK_APP=run.py" >> $GITHUB_ENV
+        echo "FLASK_ENV=testing" >> $GITHUB_ENV
+
+    - name: Run database migrations
+      run: |
+        flask db upgrade
+
     - name: Start Flask app in background
       run: |
         python run.py &
         sleep 5
+        # Optional: check if app is up
+        curl --retry 5 --retry-connrefused http://127.0.0.1:5000/
 
     - name: Run tests
       run: |

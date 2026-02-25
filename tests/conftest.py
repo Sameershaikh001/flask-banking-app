@@ -38,8 +38,8 @@ def auth_token(api_client):
 @pytest.fixture(scope="function")
 def driver():
     options = webdriver.ChromeOptions()
-    options = webdriver.ChromeOptions()
-    #options.add_argument("--headless")  # Remove to see browser
+    #options = webdriver.ChromeOptions()
+    options.add_argument("--headless")  # Remove to see browser
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     service = Service(ChromeDriverManager().install())
