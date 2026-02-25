@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Banking App{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">FinBank</a>
+            <ul class="nav-links" id="nav-links">
+                <!-- Dynamic links based on login state will be handled by JS -->
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Load api.js first -->
+    <script src="{{ url_for('static', filename='js/api.js') }}"></script>
+    <!-- Then the inline navigation script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.getElementById('nav-links');
+            const token = localStorage.getItem('access_token');
+            
+            if (token) {
+                // Logged in
+                navLinks.innerHTML = `
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li><a href="/profile-page">Profile</a></li>
+                    <li><a href="/transactions-page">Transactions</a></li>
+                    <li><a href="#" id="logout">Logout</a></li>
+                `;
+                document.getElementById('logout').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('access_token');
+                    window.location.href = '/login-page';
+                });
+            } else {
+                // Not logged in
+                navLinks.innerHTML = `
+                    <li><a href="/login-page">Login</a></li>
+                    <li><a href="/register-page">Register</a></li>
+                `;
+            }
+        });
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

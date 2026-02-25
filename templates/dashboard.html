@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - FinBank{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <div class="card balance-card">
+        <h3>Your Balance</h3>
+        <div class="balance-amount" id="balance">Loading...</div>
+    </div>
+    
+    <div class="card actions-card">
+        <h3>Quick Actions</h3>
+        <div class="action-buttons">
+            <a href="/transfer-page" class="btn btn-primary">Transfer Money</a>
+            <a href="/profile-page" class="btn">View Profile</a>
+            <a href="/transactions-page" class="btn">Transaction History</a>
+            <!-- Admin-only buttons will be shown via JS -->
+            <div id="admin-actions" style="display: none;">
+                <button class="btn btn-success" onclick="showDepositForm()">Deposit</button>
+                <button class="btn btn-warning" onclick="showWithdrawForm()">Withdraw</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Hidden forms for deposit/withdraw (will be shown by JS) -->
+    <div id="deposit-form" class="card" style="display: none;">
+        <h3>Deposit Funds</h3>
+        <form id="depositForm">
+            <div class="form-group">
+                <label for="deposit-amount">Amount</label>
+                <input type="number" id="deposit-amount" step="0.01" min="0.01" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Deposit</button>
+            <button type="button" class="btn" onclick="hideDepositForm()">Cancel</button>
+        </form>
+    </div>
+    
+    <div id="withdraw-form" class="card" style="display: none;">
+        <h3>Withdraw Funds</h3>
+        <form id="withdrawForm">
+            <div class="form-group">
+                <label for="withdraw-amount">Amount</label>
+                <input type="number" id="withdraw-amount" step="0.01" min="0.01" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Withdraw</button>
+            <button type="button" class="btn" onclick="hideWithdrawForm()">Cancel</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

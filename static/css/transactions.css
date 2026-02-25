@@ -1,0 +1,59 @@
+.transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+}
+
+.transaction-table th,
+.transaction-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.transaction-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.transaction-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.pagination-controls button {
+    padding: 0.4rem 1rem;
+}
+
+.pagination-controls select {
+    padding: 0.4rem;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-left: auto;
+}
+
+#pageInfo {
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .transaction-table {
+        font-size: 0.9rem;
+    }
+    
+    .pagination-controls {
+        justify-content: center;
+    }
+    
+    .pagination-controls select {
+        margin-left: 0;
+    }
+}

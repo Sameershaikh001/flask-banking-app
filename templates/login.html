@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Login - FinBank{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="card login-card">
+    <h2 class="text-center">Login to Your Account</h2>
+    <form id="loginForm">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+ <input type="password" id="password" name="password" required>
+        </div>
+        <div id="message" class="alert" style="display: none;"></div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <p class="text-center">Don't have an account? <a href="{{ url_for('main.register_page') }}">Register</a></p>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+{% endblock %}
