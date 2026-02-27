@@ -38,6 +38,8 @@ jobs:
         flask db upgrade
 
     - name: Start Flask app in background
+      env:
+        PORT: 5000
       run: |
         python run.py &
         sleep 5
