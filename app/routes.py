@@ -324,3 +324,25 @@ def withdraw():
         'message': 'Withdrawal successful',
         'new_balance': new_balance
     }), 200
+
+@bp.route('/create-admin', methods=['POST'])
+@jwt_required()
+@admin_required
+def create_admin():
+    """Allows an existing admin to create a new admin user."""
+    data = request.get_json()
+    if not data or not data.get('username') or not data.get('email') or not data.get('password'):
+        return jsonify({'message': 'Missing required fields'}), 400
+
+    if User.query.filter_by(username=data['username']).first():
+        return jsonify({'message': 'Username already exists'}), 400
+
+    if User.query.filter_by(email=data['email']).first():
+        return jsonify({'message': 'Email already exists'}), 400
+
+    admin_user = User(username=data['username'], email=data['email'], role='admin')
+    admin_user.set_password(data['password'])
+    db.session.add(admin_user)
+    db.session.commit()
+
+    return jsonify({'message': 'Admin user created successfully'}), 201

@@ -33,3 +33,19 @@ document.getElementById('profileForm').addEventListener('submit', async function
         document.getElementById('message').textContent = error.message || 'Update failed';
     }
 });
+
+document.addEventListener('DOMContentLoaded', async function() {
+    try {
+        const profile = await apiCall('/profile');
+        document.getElementById('username').textContent = profile.username;
+        document.getElementById('email').textContent = profile.email;
+        document.getElementById('balance').textContent = `₹${profile.balance.toFixed(2)}`;
+        
+        // Role badge
+        const roleSpan = document.getElementById('role-badge');
+        roleSpan.textContent = profile.role === 'admin' ? 'Admin' : 'User';
+        roleSpan.className = `badge ${profile.role === 'admin' ? 'badge-admin' : 'badge-user'}`;
+    } catch (error) {
+        alert('Failed to load profile');
+    }
+});
