@@ -2,9 +2,9 @@ name: Run Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, staging ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, staging ]
 
 jobs:
   test:
@@ -43,7 +43,6 @@ jobs:
       run: |
         python run.py &
         sleep 5
-        # Optional: check if app is up
         curl --retry 5 --retry-connrefused http://127.0.0.1:5000/
 
     - name: Run tests
