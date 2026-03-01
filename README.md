@@ -4,6 +4,7 @@ A secure Flask-based digital banking application with JWT authentication, role-b
 
 ![Tests](https://github.com/Sameershaikh001/flask-banking-app/actions/workflows/test.yml/badge.svg)
 
+
 ## Features
 
 - 🔐 User Registration & Login with JWT
